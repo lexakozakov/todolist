@@ -449,8 +449,11 @@ table.table td.text-center, table.table th.text-center { text-align: center; }
 .project_name { background: #E9E9E9 url('/assets/img/todolist/body-bg.png') repeat 0 0; min-height: 32px; padding-left: 7px; }
 .project_name .project-icon { float: left; width: 13px; padding-top: 3px; }
 .project_name div.name { float: left; font-family: 'Helvetica'; font-size: 20px; padding: 3px 0 10px 11px; width: 435px; }
+.project_name div.name:hover { cursor: crosshair; }
 .project_name input[type=text] { float: left; border: 0; border-radius:0; border-color: red;  background: #E9E9E9 url('/assets/img/todolist/body-bg.png') repeat 0 0; display: none; font-size: 20px; padding-left: 10px; resize: none; overflow: hidden; outline: none;   outline-color: transparent; outline-style: none; width: 430px; -webkit-appearance: none; -webkit-box-shadow: none; box-shadow: none; -webkit-transition:0; -webkit-border-radius: none;  }
 .project_name input[type=text]:focus { border-radius:0; outline: none; -webkit-appearance: none; -webkit-border-radius: 0; border-color: red; }
+
+
 
 .project_name .edit-block { color: #cac8c8; display: none; margin: 5px 5px 0 0;  }
 .project_name .edit-block a { color: #999999; text-decoration: none; }
@@ -465,6 +468,7 @@ table.task-container tbody tr td:nth-child(3) { text-align: center; color: #cac8
 table.task-container tbody tr td a { color: #999999; text-decoration: none; }
 table.task-container tbody tr td a:hover{ color: #08c; }
 table.task-container input[name=task_text] { display: none; margin-bottom: 0; width: 95%; }
+table.task-container input[type=checkbox] { margin: 0 0 0 0; }
 table.task-container tbody tr.blank { display: none; }
 table.task-container div.input-append { margin-bottom: 0; }
 

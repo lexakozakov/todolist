@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.5, created on 2013-05-05 22:29:26
+<?php /* Smarty version Smarty-3.1.5, created on 2013-05-06 00:04:14
          compiled from "/Users/lexa/Projects/todolist/application/views/todo/_tasks_list.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:49422669451855418a6cb03-02649817%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '23968d1e7bc84835e63d6009c3b90896bdbb433d' => 
     array (
       0 => '/Users/lexa/Projects/todolist/application/views/todo/_tasks_list.tpl',
-      1 => 1367782164,
+      1 => 1367787812,
       2 => 'file',
     ),
   ),
@@ -44,9 +44,9 @@ $_smarty_tpl->tpl_vars['task']->_loop = true;
 ?>
                     <tr task_id="<?php echo $_smarty_tpl->tpl_vars['task']->value->id;?>
 ">
-                        <td width="10"><input type="checkbox" name="task_status" value="1"<?php if ($_smarty_tpl->tpl_vars['task']->value->status==1){?> checked<?php }?>></td>
-                        <td class="task_text"><?php if ($_smarty_tpl->tpl_vars['task']->value->status==1){?><del><?php }?><?php echo htmlspecialchars($_smarty_tpl->tpl_vars['task']->value->task_text, ENT_QUOTES, 'UTF-8', true);?>
-<?php if ($_smarty_tpl->tpl_vars['task']->value->status==1){?></del><?php }?></td>
+                        <td width="10"><input type="checkbox" name="task_status" value="1"<?php if ($_smarty_tpl->tpl_vars['task']->value->status=='done'){?> checked<?php }?>></td>
+                        <td class="task_text"><?php if ($_smarty_tpl->tpl_vars['task']->value->status=='done'){?><del><?php }?><?php echo htmlspecialchars($_smarty_tpl->tpl_vars['task']->value->task_text, ENT_QUOTES, 'UTF-8', true);?>
+<?php if ($_smarty_tpl->tpl_vars['task']->value->status=='done'){?></del><?php }?></td>
                         <td width="77">
                     	    <a href="#" title="Sort tasks" class="order-tasks"><i class="icon-sort"></i></a> |
                     	    <a href="#" title="Edit task" class="edit-task"><i class="icon-pencil"></i></a> |
@@ -57,7 +57,7 @@ $_smarty_tpl->tpl_vars['task']->_loop = true;
                     <?php } ?>
                     
                     <tr class="blank" rel="">
-                        <td width="10"><input type="checkbox" name="task_status[]" value="1"></td>
+                        <td width="10"><input type="checkbox" name="task_status[]" value="done"></td>
                         <td class="task_text"></td>
                         <td width="77">
                     	    <a href="#" title="Sort tasks" class="order-task"><i class="icon-sort"></i></a> |

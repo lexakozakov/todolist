@@ -3,7 +3,7 @@
     <div class="row" >
 
         <div class="add-project-block" >
-            <button class="btn btn-primary add-project" type="button">Add Project</button>
+            <button class="btn btn-large add-project" type="button">Add Project</button>
         </div>
 
         
@@ -48,5 +48,5 @@
     </div>
 </div>
 {else}
-Please login, before start to use todo list.
+    <p>Please <a href="/facebook/login" title="login via facebook">login via facebook</a>, before start to use todo list.</p>
 {/if}

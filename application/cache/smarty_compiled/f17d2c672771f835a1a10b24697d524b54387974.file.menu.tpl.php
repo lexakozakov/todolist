@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.5, created on 2013-05-05 21:40:46
+<?php /* Smarty version Smarty-3.1.5, created on 2013-05-06 00:28:28
          compiled from "/Users/lexa/Projects/todolist/application/views/menu.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:19275472755184265f8be375-58127370%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'f17d2c672771f835a1a10b24697d524b54387974' => 
     array (
       0 => '/Users/lexa/Projects/todolist/application/views/menu.tpl',
-      1 => 1367779224,
+      1 => 1367789304,
       2 => 'file',
     ),
   ),
@@ -38,6 +38,12 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 						<a href="/tests/">
     						<i class="icon-cogs"></i>
 							<span>Tests</span>
+						</a>
+				    </li>
+    				<li <?php if ($_smarty_tpl->tpl_vars['controller']->value=='sql'){?> class=" active"<?php }?>>
+						<a href="/sql/">
+    						<i class="icon-asterisk"></i>
+							<span>SQL Tasks</span>
 						</a>
 				    </li>
 				</ul>

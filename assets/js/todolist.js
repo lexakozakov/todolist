@@ -15,7 +15,6 @@ var fixHelper = function(e, ui) {
     var Project = function (element, options) 
     {
         this.options = $.extend({}, $.fn.project.defaults, options);
-        this.test = 'red';
         this.$element = $(element);
         this.init();
     }
@@ -254,7 +253,7 @@ var fixHelper = function(e, ui) {
             $.ajax({
                 url: "/ajax/task/save/",
                 type: "POST",
-                data: { project_id: element.attr('project_id'), task_id: action == 'add' ? 0 : input.closest('tr').attr('task_id'), task_text: input.val(), status: 0},
+                data: { project_id: element.attr('project_id'), task_id: action == 'add' ? 0 : input.closest('tr').attr('task_id'), task_text: input.val(), status: 'opened'},
                 dataType: "json",
                 beforeSend: function(jqXHR, settings){
                     input.attr('disabled', '');
@@ -333,14 +332,14 @@ var fixHelper = function(e, ui) {
             $.ajax({
                 url: "/ajax/task/change-status/",
                 type: "POST",
-                data: { id: input.closest('tr').attr('task_id'), status: input.is(':checked') ? 1 : 0},
+                data: { id: input.closest('tr').attr('task_id'), status: input.is(':checked') ? 'done' : 'opened'},
                 dataType: "json",
                 beforeSend: function(jqXHR, settings){
                     input.attr('disabled', '');
                 },
                 success: function(data) {
                     input.removeAttr('disabled');
-                    input.closest('tr').children('td.task_text').html((data.task.status == 1 ? '<del>' : '')+data.task.task_text+(data.task.status == 1 ? '</del>' : ''));
+                    input.closest('tr').children('td.task_text').html((data.task.status == 'done' ? '<del>' : '')+data.task.task_text+(data.task.status == 'done' ? '</del>' : ''));
                     
                 }
             });               

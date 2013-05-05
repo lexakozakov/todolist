@@ -32,7 +32,7 @@ if (Kohana::$environment == Kohana::PRODUCTION)
     
         /* Fields from users table.
         user: http://developers.facebook.com/docs/reference/fql/user/ */
-        'fields'    => 'uid, username, first_name, middle_name, last_name, name, pic, email, pic_big',
+        'fields'    => 'uid, username, first_name, middle_name, last_name, name, pic, email, pic_big, pic_square',
         
         'session_type' => 'database',
     );
@@ -63,7 +63,7 @@ if (Kohana::$environment == Kohana::PRODUCTION)
     
         /* Fields from users table.
         user: http://developers.facebook.com/docs/reference/fql/user/ */
-        'fields'    => 'uid, username, first_name, middle_name, last_name, name, pic, email, pic_big',
+        'fields'    => 'uid, username, first_name, middle_name, last_name, name, pic, email, pic_big, pic_square',
         
         'session_type' => 'database',
     );

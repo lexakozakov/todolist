@@ -12,8 +12,8 @@
                 <tbody>
                     {foreach from=$tasks item='task'}
                     <tr task_id="{$task->id}">
-                        <td width="10"><input type="checkbox" name="task_status" value="1"{if $task->status eq 1} checked{/if}></td>
-                        <td class="task_text">{if $task->status eq 1}<del>{/if}{$task->task_text|escape:'html'}{if $task->status eq 1}</del>{/if}</td>
+                        <td width="10"><input type="checkbox" name="task_status" value="1"{if $task->status eq 'done'} checked{/if}></td>
+                        <td class="task_text">{if $task->status eq 'done'}<del>{/if}{$task->task_text|escape:'html'}{if $task->status eq 'done'}</del>{/if}</td>
                         <td width="77">
                     	    <a href="#" title="Sort tasks" class="order-tasks"><i class="icon-sort"></i></a> |
                     	    <a href="#" title="Edit task" class="edit-task"><i class="icon-pencil"></i></a> |
@@ -24,7 +24,7 @@
                     {/foreach}
                     
                     <tr class="blank" rel="">
-                        <td width="10"><input type="checkbox" name="task_status[]" value="1"></td>
+                        <td width="10"><input type="checkbox" name="task_status[]" value="done"></td>
                         <td class="task_text"></td>
                         <td width="77">
                     	    <a href="#" title="Sort tasks" class="order-task"><i class="icon-sort"></i></a> |

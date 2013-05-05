@@ -160,3 +160,17 @@
 #6 /Users/lexa/Projects/todolist/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
 #7 /Users/lexa/Projects/todolist/index.php(120): Kohana_Request->execute()
 #8 {main} in /Users/lexa/Projects/todolist/application/classes/Controller/Home.php:15
+2013-05-05 23:49:52 --- EMERGENCY: Database_Exception [ 1364 ]: Field 'userpic_url' doesn't have a default value [ INSERT INTO `users` (`username`, `email`, `network_id`, `name`, `registered_ip`, `password`, `created_at`) VALUES ('facebook_731345526', 'kozakoff@gmail.com', '731345526', 'lexa kozakov', '0', 'f8b055db51753f86fd370fa1bfa9786469e91341c5332b049c25a1aa8643c54f', '2013-05-05 23:49:52') ] ~ MODPATH/database/classes/Kohana/Database/MySQL.php [ 194 ] in /Users/lexa/Projects/todolist/modules/database/classes/Kohana/Database/Query.php:251
+2013-05-05 23:49:52 --- DEBUG: #0 /Users/lexa/Projects/todolist/modules/database/classes/Kohana/Database/Query.php(251): Kohana_Database_MySQL->query(2, 'INSERT INTO `us...', false, Array)
+#1 /Users/lexa/Projects/todolist/modules/orm/classes/Kohana/ORM.php(1321): Kohana_Database_Query->execute(Object(Database_MySQL))
+#2 /Users/lexa/Projects/todolist/modules/orm/classes/Model/Auth/User.php(167): Kohana_ORM->create(Object(Validation))
+#3 /Users/lexa/Projects/todolist/application/classes/Model/User.php(97): Model_Auth_User->create_user(Array, Array)
+#4 /Users/lexa/Projects/todolist/modules/facebookauth/classes/Controller/Facebook.php(51): Model_User->create_user_if_not_exist(Array)
+#5 /Users/lexa/Projects/todolist/system/classes/Kohana/Controller.php(84): Controller_Facebook->action_login_response()
+#6 [internal function]: Kohana_Controller->execute()
+#7 /Users/lexa/Projects/todolist/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Facebook))
+#8 /Users/lexa/Projects/todolist/application/classes/Request/Client/Internal.php(27): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#9 /Users/lexa/Projects/todolist/system/classes/Kohana/Request/Client.php(114): Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#10 /Users/lexa/Projects/todolist/system/classes/Kohana/Request.php(990): Kohana_Request_Client->execute(Object(Request))
+#11 /Users/lexa/Projects/todolist/index.php(120): Kohana_Request->execute()
+#12 {main} in /Users/lexa/Projects/todolist/modules/database/classes/Kohana/Database/Query.php:251

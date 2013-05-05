@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.5, created on 2013-05-05 23:01:42
+<?php /* Smarty version Smarty-3.1.5, created on 2013-05-05 23:57:27
          compiled from "/Users/lexa/Projects/todolist/application/views/todo/home.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:17108916875184265f7fb018-28739169%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '1d3eed60a25b6608c642d1d9ebf1d3189809d64e' => 
     array (
       0 => '/Users/lexa/Projects/todolist/application/views/todo/home.tpl',
-      1 => 1367784100,
+      1 => 1367787424,
       2 => 'file',
     ),
   ),
@@ -30,7 +30,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     <div class="row" >
 
         <div class="add-project-block" >
-            <button class="btn btn-primary add-project" type="button">Add Project</button>
+            <button class="btn btn-large add-project" type="button">Add Project</button>
         </div>
 
         
@@ -83,5 +83,5 @@ $_smarty_tpl->tpl_vars['project']->_loop = true;
     </div>
 </div>
 <?php }else{ ?>
-Please login, before start to use todo list.
+    <p>Please <a href="/facebook/login" title="login via facebook">login via facebook</a>, before start to use todo list.</p>
 <?php }?><?php }} ?>

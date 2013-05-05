@@ -59,7 +59,7 @@ class Model_Task extends ORM
     	
     	$data['created_at'] = $data['updated_at'] = Date::formatted_time('now','Y-m-d H:i:s');
     	
-    	$data['status'] = 0;
+    	$data['status'] = 'opened';
     	
     	$tasks = $this->where('project_id', '=', $data['project_id'])->order_by('order_num')->find_all();
         $order_num = 1;

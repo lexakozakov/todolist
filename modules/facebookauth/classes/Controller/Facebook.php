@@ -39,8 +39,10 @@ class Controller_Facebook extends Controller_Base {
                 'email'        => $this->facebook->get('email'),
                 'network_id'   => $this->facebook->user_id(),
                 'name'         => $this->facebook->get('name'),
-                'userpic_url'  => $this->facebook->get('pic_big'),
+                'userpic_url'  => $this->facebook->get('pic_square'),
             );  
+            
+            $logged_user_data['userpic_url'] = $logged_user_data['userpic_url'] ? $logged_user_data['userpic_url'] : '';
         }
         
         // create user if he does't exists in out DB. Login him. 

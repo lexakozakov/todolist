@@ -23,3 +23,5 @@
 [Sun May 05 18:07:53 2013] [error] [client 127.0.0.1] PHP Fatal error:  Call to undefined method Database_MySQL_Result::loaded() in /Users/lexa/Projects/todolist/application/classes/Model/Task.php on line 65, referer: http://todolist.dev/
 [Sun May 05 18:25:45 2013] [error] [client 127.0.0.1] PHP Fatal error:  Cannot use object of type Model_Task as array in /Users/lexa/Projects/todolist/application/classes/Controller/Ajax/Task.php on line 23, referer: http://todolist.dev/
 [Sun May 05 18:25:51 2013] [error] [client 127.0.0.1] PHP Fatal error:  Cannot use object of type Model_Task as array in /Users/lexa/Projects/todolist/application/classes/Controller/Ajax/Task.php on line 23
+[Sun May 05 23:48:09 2013] [error] [client 127.0.0.1] CSRF state token does not match one provided., referer: http://todolist.dev/
+[Sun May 05 23:50:22 2013] [error] [client 127.0.0.1] CSRF state token does not match one provided., referer: http://todolist.dev/

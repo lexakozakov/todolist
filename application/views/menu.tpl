@@ -15,6 +15,12 @@
 							<span>Tests</span>
 						</a>
 				    </li>
+    				<li {if $controller eq 'sql'} class=" active"{/if}>
+						<a href="/sql/">
+    						<i class="icon-asterisk"></i>
+							<span>SQL Tasks</span>
+						</a>
+				    </li>
 				</ul>
 			</div> 
 		</div> 
