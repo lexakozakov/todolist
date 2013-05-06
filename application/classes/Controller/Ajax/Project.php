@@ -17,11 +17,14 @@ class Controller_Ajax_Project extends Controller_Base {
         }catch (Kohana_Exception $e) {
         	$error = $e->getMessage();            
         }
+
+        $project_data = Arr::extract($project->as_array(), array('id', 'name'));
+        $project_data['name'] = htmlspecialchars($project_data['name']);
          
         echo json_encode(array(
             'status'  => empty($error) ? 1 : 0,
             'error'   => $error,
-            'project' => is_object($project) ? Arr::extract($project->as_array(), array('id', 'name')) : array(),
+            'project' => $project_data,
         ));
     }
     
