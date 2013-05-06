@@ -24,7 +24,7 @@
                     {/foreach}
                     
                     <tr class="blank" rel="">
-                        <td width="10"><input type="checkbox" name="task_status[]" value="done"></td>
+                        <td width="10"><input type="checkbox" name="task_status" value="done"></td>
                         <td class="task_text"></td>
                         <td width="77">
                     	    <a href="#" title="Sort tasks" class="order-task"><i class="icon-sort"></i></a> |

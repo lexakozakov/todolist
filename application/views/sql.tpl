@@ -54,6 +54,11 @@ WHERE LEFT(p.name, 1) = 'N'
         <br/> 
         <h4>5. Get the list of all projects containing the ‘a’ letter in the middle of the name, and show the tasks count near each project. Mention that there can exist projects without tasks and tasks with project_id=NULL</h4>
         <pre>
+SELECT p.id, p.name, COUNT(t.id) as tasks_count
+FROM projects p
+	LEFT JOIN tasks t ON p.id = t.project_id
+WHERE p.name REGEXP '^.+a+.*.+$'
+GROUP BY p.id;
         </pre>
 
         <br/> 
@@ -73,6 +78,12 @@ ORDER BY task_text;
         <br/> 
         <h4>7. Get the list of tasks having several exact matches of both name and status, from the project ‘Garage’. Order by matches count</h4>
         <pre>
+SELECT t.task_text, COUNT(t.id) as tasks_count
+FROM tasks t
+	LEFT JOIN projects p ON p.id = t.project_id
+WHERE p.name = 'Garage'
+GROUP BY CONCAT(t.task_text, t.status)
+ORDER BY tasks_count        
         </pre>
 
         <br/> 

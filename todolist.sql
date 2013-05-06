@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.6.10)
 # Database: todolist
-# Generation Time: 2013-05-05 21:52:39 +0000
+# Generation Time: 2013-05-06 12:41:50 +0000
 # ************************************************************
 
 
@@ -92,7 +92,7 @@ DROP TABLE IF EXISTS `tasks`;
 CREATE TABLE `tasks` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `task_text` text NOT NULL,
-  `project_id` int(11) unsigned NOT NULL,
+  `project_id` int(11) unsigned DEFAULT NULL,
   `status` enum('opened','done') NOT NULL DEFAULT 'opened',
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,

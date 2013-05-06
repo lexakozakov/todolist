@@ -170,12 +170,8 @@ var fixHelper = function(e, ui) {
                 
                 this_obj.change_task_status($(this));
             })
-                 
-            // End Task events
-            
-            
-            
         }
+        // End Ptoject Events
         
         , edit_project: function(){
 
@@ -183,7 +179,6 @@ var fixHelper = function(e, ui) {
             
             $('div.name', project_container).hide();
             project_container.children('input').val($('div.name', project_container).html()).show().focus();
-            
         }
         
         , save_project: function() {
@@ -194,7 +189,6 @@ var fixHelper = function(e, ui) {
             
             if ($('input', project_container).attr('disabled') !== undefined) return false;
             
-            
             $.ajax({
                 url: "/ajax/project/save/",
                 type: "POST",
@@ -204,15 +198,19 @@ var fixHelper = function(e, ui) {
                     $('input', project_container).attr('disabled', '');
                 },
                 success: function(data) {
-                
-                    if (!element.attr('project_id'))
+                    
+                    if (data.status == 1)
                     {
                         element.attr('project_id', data.project.id);
+                        $('div.name', project_container).html(data.project.name).show();
+                        $('thead', task_container).show();
+                    }else{
+                        $('div.name', project_container).html($('input', project_container).val()).show();
+                        $(element).children('div.alert').children('span.message').html(data.error);
+                        $(element).children('div.alert').show();
                     }
-                    
+
                     $('input', project_container).removeAttr('disabled').hide();
-                    $('div.name', project_container).html(data.project.name).show();
-                    $('thead', task_container).show();
                 }
             });              
             
@@ -261,23 +259,30 @@ var fixHelper = function(e, ui) {
                 success: function(data) {
                     input.removeAttr('disabled');
                     
-                    if (action == 'add')
+                    if (data.status == 1)
                     {
-                        var new_task = $('tr.blank', task_container).clone(true);
-                        new_task.removeClass('blank');
-                        $('td.task_text', new_task).html(data.task.task_text);
-                        new_task.attr('task_id', data.task.id)
-                                .show()
-                                .prependTo($('tbody', task_container));
-                    	
-                    	input.val('');
-                        
-                    }else if(action == 'edit'){
-                        
-                        input.closest('td').html(data.task.task_text);
-                        input.remove();
-                        
+                        if (action == 'add')
+                        {
+                            var new_task = $('tr.blank', task_container).clone(true);
+                            new_task.removeClass('blank');
+                            $('td.task_text', new_task).html(data.task.task_text);
+                            new_task.attr('task_id', data.task.id)
+                                    .show()
+                                    .prependTo($('tbody', task_container));
+                        	
+                        	input.val('');
+                            
+                        }else if(action == 'edit'){
+                            
+                            input.closest('td').html(data.task.task_text);
+                            input.remove();
+                            
+                        }
+                    }else{
+                        $(element).children('div.alert').children('span.message').html(data.error);
+                        $(element).children('div.alert').show();
                     }
+                    
                 }
             });              
         }
@@ -339,8 +344,11 @@ var fixHelper = function(e, ui) {
                 },
                 success: function(data) {
                     input.removeAttr('disabled');
-                    input.closest('tr').children('td.task_text').html((data.task.status == 'done' ? '<del>' : '')+data.task.task_text+(data.task.status == 'done' ? '</del>' : ''));
                     
+                    if (data.status == 1)
+                    {
+                        input.closest('tr').children('td.task_text').html((data.task.status == 'done' ? '<del>' : '')+data.task.task_text+(data.task.status == 'done' ? '</del>' : ''));
+                    }
                 }
             });               
         }

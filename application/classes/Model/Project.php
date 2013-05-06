@@ -17,7 +17,7 @@ class Model_Project extends ORM
 	);    
 	
 	private $errors;
-	private $user;
+	private $user = FALSE;
 
 	/**
 	 * Set validation rules
@@ -43,8 +43,8 @@ class Model_Project extends ORM
 	 */
 	public function set_user($user)
 	{
-    	$this->user =  (!$user instanceof ORM) ? ORM::factory('User', $user) : $user;
-    	if (!$this->user->loaded()) throw new Exception('No user found.');
+    	$this->user = (!$user instanceof ORM) ? ORM::factory('User', $user) : $user;
+    	if (!$this->user || !$this->user->loaded()) throw new Kohana_Exception('No user found.');
     	
     	return $this;
 	}
@@ -59,7 +59,7 @@ class Model_Project extends ORM
 	public function add_project(array $data, $user = FALSE)
 	{
     	if ($user) $this->set_user($user);
-    	if (!$this->user->loaded()) throw new Exception('No user found.');
+    	if (!$this->user || !$this->user->loaded()) throw new Kohana_Exception('No user found.');
     	
     	$data['created_at'] = $data['updated_at'] = Date::formatted_time('now','Y-m-d H:i:s');
     	
@@ -69,7 +69,7 @@ class Model_Project extends ORM
     	try{
             $this->save();	
     	}catch (ORM_Validation_Exception $e) {
-        	$this->errors = $e->errors('models');            
+        	throw new Kohana_Exception('An error occurred while updating DB.');
         }
     	
     	return $this;
@@ -82,26 +82,24 @@ class Model_Project extends ORM
 	 * @param ORM|int $user
 	 * @return $this 
 	 */
-	public function edit_project($id, array $data, $user = FALSE)
+	public function edit_project(array $data, $user = FALSE)
 	{
+    	if (!$this->loaded()) throw new Kohana_Exception('No project found.');
+    	
     	if ($user) $this->set_user($user);
-    	if (!$this->user->loaded()) throw new Exception('No user found.');
-
+    	if (!$this->user || !$this->user->loaded()) throw new Kohana_Exception('No user found.');
+    	
     	$data['updated_at'] = Date::formatted_time('now','Y-m-d H:i:s');
     	$data['user_id'] = $this->user->id;
-
-    	$this->reset();
-    	$this->where('id', '=', $id)->find();
     	
-    	if (!$this->loaded()) throw new Exception('No project found.');     	
-        if (!$this->has_user_access($this->user)) throw new Exception('User can not edit that project');
+        if (!$this->has_user_access($this->user)) throw new Kohana_Exception('User can not edit that project');
     	
     	$this->values(Arr::extract($data, array('name', 'user_id', 'updated_at')));
     	
     	try{
             $this->save();	
     	}catch (ORM_Validation_Exception $e) {
-        	$this->errors = $e->errors('models');            
+        	throw new Kohana_Exception('An error occurred while updating DB.');
         }
     	
     	return $this;
@@ -114,21 +112,19 @@ class Model_Project extends ORM
 	 * @param ORM|int|false  $user
 	 * @return $this 
 	 */
-	public function delete_project($id, $user = FALSE)
+	public function delete_project($user = FALSE)
 	{
-    	if ($user) $this->set_user($user);
-    	if (!$this->user->loaded()) throw new Exception('No user found.');
+    	if (!$this->loaded()) throw new Kohana_Exception('No project found.');
 
-    	$this->reset();
-    	$this->where('id', '=', $id)->find();
-    	if (!$this->loaded()) throw new Exception('No project found.');     	
+    	if ($user) $this->set_user($user);
+    	if (!$this->user || !$this->user->loaded()) throw new Kohana_Exception('No user found.');
     	
-    	if ($this->user_id != $this->user->id) throw new Exception('User can not delete that project');
+    	if ($this->user_id != $this->user->id) throw new Kohana_Exception('User can not delete that project');
         
     	try{
             $this->delete();    	
     	}catch (ORM_Validation_Exception $e) {
-        	$this->errors = $e->errors('models');            
+        	throw new Kohana_Exception('An error occurred while updating DB.');
         }
     	
     	return $this;
@@ -145,7 +141,7 @@ class Model_Project extends ORM
 	public function set_tasks_order(array $data, $user = FALSE)
 	{
     	if ($user) $this->set_user($user);
-    	if (!$this->user->loaded()) throw new Exception('No user found.');
+    	if (!$this->user || !$this->user->loaded()) throw new Kohana_Exception('No user found.');
     	
     	$order_num = 0;
     	foreach($data as $task_id)

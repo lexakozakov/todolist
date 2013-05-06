@@ -5,17 +5,16 @@ class Controller_Ajax_Project extends Controller_Base {
 
     public function action_save()
     {
-        $project = ORM::factory('Project')->set_user($this->user);
         $error = '';
         
         try{
             if ($this->request->post('project_id'))
             {
-                $project->edit_project($this->request->post('project_id'), $this->request->post());
+                $project = ORM::factory('Project', $this->request->post('project_id'))->set_user($this->user)->edit_project($this->request->post());
             }else{
-            	$project->add_project($this->request->post());
+            	$project = ORM::factory('Project')->set_user($this->user)->add_project($this->request->post());
             }
-        }catch (Exception $e) {
+        }catch (Kohana_Exception $e) {
         	$error = $e->getMessage();            
         }
          
@@ -23,18 +22,17 @@ class Controller_Ajax_Project extends Controller_Base {
             'status'  => empty($error) ? 1 : 0,
             'error'   => $error,
             'project' => is_object($project) ? Arr::extract($project->as_array(), array('id', 'name')) : array(),
-         ));
+        ));
     }
     
     
     public function action_delete()
     {
-        $project = ORM::factory('Project')->set_user($this->user);
         $error = '';
 
         try{
-            $project->delete_project($this->request->post('project_id'));
-        }catch (Exception $e) {
+            $project = ORM::factory('Project', $this->request->post('project_id'))->set_user($this->user)->delete_project();
+        }catch (ORM_Validation_Exception $e) {
         	$error = $e->getMessage();            
         }
          
@@ -42,7 +40,7 @@ class Controller_Ajax_Project extends Controller_Base {
             'status'  => empty($error) ? 1 : 0,
             'error'   => $error,
             'project' => Arr::extract($project->as_array(), array('id', 'name')),
-         ));
+        ));
     }
 
 
@@ -54,13 +52,13 @@ class Controller_Ajax_Project extends Controller_Base {
 
         try{
             $project->set_tasks_order((array)$this->request->post('tasks'));
-        }catch (Exception $e) {
+        }catch (Kohana_Exception $e) {
         	$error = $e->getMessage();            
         }
          
         echo json_encode(array(
             'status'  => empty($error) ? 1 : 0,
             'error'   => $error,
-         ));
+        ));
     }
 }

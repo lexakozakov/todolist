@@ -475,5 +475,5 @@ table.task-container div.input-append { margin-bottom: 0; }
 input.error { border-color: #b94a48; }
 input.error:focus { border-color: #e9322d; -webkit-box-shadow: 0 0 6px #f8b9b7; -moz-box-shadow: 0 0 6px #f8b9b7; box-shadow: 0 0 6px #f8b9b7; }
 
-
+div.alert { display: none; }
 

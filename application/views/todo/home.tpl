@@ -8,8 +8,9 @@
 
         
         {foreach from=$projects item='project'}
-        
         <div class="project" project_id="{$project->id}">
+            {include file="todo/_error_block.tpl"}
+            
             <div class="project_name">
             	<div class="project-icon"><i class="icon-calendar"></i></div>
             	
@@ -30,6 +31,7 @@
         {/foreach}
         
         <div class="project" id="project-blank" project_id="">
+            {include file="todo/_error_block.tpl"}
             <div class="project_name">
             	<div class="project-icon"><i class="icon-calendar"></i></div>
             	<div class="name"></div>

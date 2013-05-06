@@ -120,12 +120,12 @@ Kohana::modules(array(
 	 'database'      => MODPATH.'database',   // Database access
 	 'orm'           => MODPATH.'orm',        // Object Relationship Mapping
      'smarty'        => MODPATH.'smarty',     // Smarty template
-	 'unittest'      => MODPATH.'unittest',   // Unit testing
-	// 'cache'      => MODPATH.'cache',      // Caching with multiple backends
-	// 'codebench'  => MODPATH.'codebench',  // Benchmarking tool
-	// 'image'      => MODPATH.'image',      // Image manipulation
-	// 'minion'     => MODPATH.'minion',     // CLI Tasks
-	// 'userguide'  => MODPATH.'userguide',  // User guide and API documentation
+	 //'unittest'      => MODPATH.'unittest',   // Unit testing
+	 //'userguide'     => MODPATH.'userguide',  // User guide and API documentation
+	 // 'cache'      => MODPATH.'cache',      // Caching with multiple backends
+	 // 'codebench'  => MODPATH.'codebench',  // Benchmarking tool
+	 // 'image'      => MODPATH.'image',      // Image manipulation
+	 // 'minion'     => MODPATH.'minion',     // CLI Tasks
 ));
 
 

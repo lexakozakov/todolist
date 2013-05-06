@@ -40,7 +40,7 @@ class Model_Task extends ORM
 	public function set_user($user)
 	{
     	$this->user =  (!$user instanceof ORM) ? ORM::factory('User', $user) : $user;
-    	if (!$this->user->loaded()) throw new Exception('No user found.');
+    	if (!$this->user->loaded()) throw new Kohana_Exception('No user found.');
     	
     	return $this;
 	}
@@ -55,7 +55,7 @@ class Model_Task extends ORM
 	public function add_task(array $data, $user = FALSE)
 	{
     	if ($user) $this->set_user($user);
-    	if (!$this->user->loaded()) throw new Exception('No user found.');
+    	if (!$this->user->loaded()) throw new Kohana_Exception('No user found.');
     	
     	$data['created_at'] = $data['updated_at'] = Date::formatted_time('now','Y-m-d H:i:s');
     	
@@ -84,24 +84,23 @@ class Model_Task extends ORM
 	/**
 	 * Edit task
 	 *
-	 * @param int            $id
 	 * @param array          $data
 	 * @param ORM|int|false  $user
 	 * @return $this 
 	 */
-	public function edit_task($id, array $data, $user = FALSE)
+	public function edit_task(array $data, $user = FALSE)
 	{
+    	if (!$this->loaded()) throw new Kohana_Exception('No task found.');
+        
+        $project = ORM::factory('Project', $this->project_id);
+        if (!$project->loaded()) throw new Kohana_Exception('Task was not set for any projects.');
+            	
     	if ($user) $this->set_user($user);
-    	if (!$this->user->loaded()) throw new Exception('No user found.');
+    	if (!$this->user->loaded()) throw new Kohana_Exception('No user found.');
 
-    	$data['updated_at'] = Date::formatted_time('now','Y-m-d H:i:s');
-
-    	$this->reset();
-    	$this->with('project')->where('task.id', '=', $id)->find();
+    	if ($project->user_id != $this->user->id) throw new Kohana_Exception('User can not edit that task');
     	
-    	if (!$this->loaded()) throw new Exception('No task found.');     	
-    	if ($this->project->user_id != $this->user->id) throw new Exception('User can not edit that task');
-
+    	$data['updated_at'] = Date::formatted_time('now','Y-m-d H:i:s');
     	$data['status'] = isset($data['status']) ? $data['status'] : $this->status;
     	$data['project_id'] = isset($data['project_id']) ? $data['project_id'] : $this->project_id;
     	$data['task_text'] = isset($data['task_text']) ? $data['task_text'] : $this->task_text;
@@ -121,20 +120,21 @@ class Model_Task extends ORM
 	/**
 	 * Delete task
 	 *
-	 * @param int             $id
 	 * @param ORM|int|false  $user
 	 * @return $this 
 	 */
-	public function delete_task($id, $user = FALSE)
+	public function delete_task($user = FALSE)
 	{
-    	if ($user) $this->set_user($user);
-    	if (!$this->user->loaded()) throw new Exception('No user found.');
+    	if (!$this->loaded()) throw new Kohana_Exception('No task found.');
 
-    	$this->reset();
-    	$this->with('project')->where('task.id', '=', $id)->find();
-    	if (!$this->loaded()) throw new Exception('No task found.');     	
-    	
-    	if ($this->project->user_id != $this->user->id) throw new Exception('User can not delete that task.');
+    	if ($user) $this->set_user($user);
+    	if (!$this->user->loaded()) throw new Kohana_Exception('No user found.');
+
+        $project = ORM::factory('Project', $this->project_id);
+        if (!$project->loaded()) throw new Kohana_Exception('Task was not set for any projects.');
+
+
+    	if ($project->user_id != $this->user->id) throw new Kohana_Exception('User can not delete that task.');
     	
         
     	try{

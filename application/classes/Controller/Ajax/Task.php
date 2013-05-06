@@ -5,17 +5,22 @@ class Controller_Ajax_Task extends Controller_Base {
 
     public function action_save()
     {
-        $task = ORM::factory('Task')->set_user($this->user);
         $error = '';
         
         try{
             if ($this->request->post('task_id'))
             {
-                $task->edit_task($this->request->post('task_id'), $this->request->post());
+            	$task = ORM::factory('Task', $this->request->post('task_id'))
+            	    ->with('project')
+                    ->set_user($this->user)
+                    ->edit_task($this->request->post());
             }else{
-            	$task->add_task($this->request->post());
+            	$task = ORM::factory('Task')
+                    ->with('project')
+                    ->set_user($this->user)
+                    ->add_task($this->request->post());
             }
-        }catch (Exception $e) {
+        }catch (Kohana_Exception $e) {
         	$error = $e->getMessage();            
         }
         
@@ -33,12 +38,16 @@ class Controller_Ajax_Task extends Controller_Base {
 
     public function action_delete()
     {
-        $task = ORM::factory('Task')->set_user($this->user);
         $error = '';
 
         try{
-            $task->delete_task($this->request->post('id'));
-        }catch (Exception $e) {
+        
+            ORM::factory('Task', $this->request->post('id'))
+                ->with('project')
+                ->set_user($this->user)
+                ->delete_task();
+                
+        }catch (Kohana_Exception $e) {
         	$error = $e->getMessage();            
         }
          
@@ -51,12 +60,16 @@ class Controller_Ajax_Task extends Controller_Base {
     
     public function action_change_status()
     {
-        $task = ORM::factory('Task')->set_user($this->user);
         $error = '';
         
         try{
-            $task->edit_task($this->request->post('id'), $this->request->post());
-        }catch (Exception $e) {
+        
+            $task = ORM::factory('Task', $this->request->post('id'))
+                ->with('project')
+                ->set_user($this->user)
+                ->edit_task($this->request->post());
+                
+        }catch (Kohana_Exception $e) {
         	$error = $e->getMessage();            
         }
 
