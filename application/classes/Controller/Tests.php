@@ -4,6 +4,12 @@ class Controller_Tests extends Controller_Base {
 
 	public function action_index()
 	{
+		if (!$this->user)
+		{
+    		HTTP::redirect(URL::site(FALSE, FALSE));
+    		exit;
+		}
+		
 		$test_results = array();
 		
 		// Test User Module
