@@ -8,8 +8,8 @@ Facebook Query Language: http://developers.facebook.com/docs/reference/fql/
 if (Kohana::$environment == Kohana::PRODUCTION)
 {
     return array(
-        'appId'			=> '',
-        'secret'		=> '',
+        'appId'			=> '142533435931134',
+        'secret'		=> '5974f763c787a77e8533487e0715efcd',
         'cookie'		=> true,
     
         /* (optional) The URL to redirect the user to once the login/authorization process is complete.
@@ -17,10 +17,10 @@ if (Kohana::$environment == Kohana::PRODUCTION)
         error parameters in the URL as described in the authentication documentation.
         If this property is not specified, the user will be redirected to the current URL
         (i.e. the URL of the page where this method was called, typically the current URL in the user's browser). */
-        'redirect_uri'   => url::site('/social/facebook/login-response', true)/* url::site(Request::current()->uri(), true) */,
+        'redirect_uri'   => url::site('/facebook/login-response', true)/* url::site(Request::current()->uri(), true) */,
     
         /* (optional) Next URL to which to redirect the user after logging out (should be an absolute URL). */
-        'next'  =>  url::site('/social/facebook/logout-response', true)/* url::site(Request::current()->uri(), true) */,
+        'next'  =>  url::site('/facebook/logout-response', true)/* url::site(Request::current()->uri(), true) */,
     
         /* (optional) The permissions to request from the user. If this property is not specified, basic
         permissions will be requested from the user. */
