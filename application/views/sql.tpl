@@ -94,7 +94,7 @@ FROM tasks t
 	LEFT JOIN projects p ON p.id = t.project_id
 WHERE status = 'done'
 GROUP BY p.id
-HAVING count_tasks >= 10
+HAVING count_tasks > 10
 ORDER BY p.id
         </pre>
                 

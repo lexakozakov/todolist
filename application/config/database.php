@@ -22,9 +22,9 @@ if (Kohana::$environment == Kohana::PRODUCTION)
     			 * Ports and sockets may be appended to the hostname.
     			 */
     			'hostname'   => '127.0.0.1',
-    			'database'   => '',
-    			'username'   => '',
-    			'password'   => '',
+    			'database'   => 'lexa_todo',
+    			'username'   => 'lexa_usr',
+    			'password'   => 'zaq123',
     			'persistent' => FALSE,
     		),
     		'table_prefix' => '',
