@@ -13,7 +13,7 @@
 				<div class="nav-collapse">
     				
     				{if not $user}
-        				<a href="/facebook/login" style="font-size: 24px;" class="nav pull-right">
+        				<a href="/facebook/login" class="nav pull-right" style="font-size: 24px; margin-top: 5px; text-decoration: none;">
         					<i class="icon-facebook"></i>
         				</a>		
     				{else}
