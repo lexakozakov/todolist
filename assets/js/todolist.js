@@ -278,6 +278,7 @@ var fixHelper = function(e, ui) {
                             input.remove();
                             
                         }
+                        
                     }else{
                         $(element).children('div.alert').children('span.message').html(data.error);
                         $(element).children('div.alert').show();
@@ -313,6 +314,7 @@ var fixHelper = function(e, ui) {
         
         , save_task_order: function(){
             var element = this.$element;
+            var this_obj = this;
             
             var tasks = new Array();
             $('table.task-container tbody tr', element).each(function(index, data){
@@ -327,6 +329,7 @@ var fixHelper = function(e, ui) {
                 beforeSend: function(jqXHR, settings){
                 },
                 success: function(data) {
+                
                 }
             });             
             

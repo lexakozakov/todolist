@@ -27,7 +27,7 @@
                         <td width="10"><input type="checkbox" name="task_status" value="done"></td>
                         <td class="task_text"></td>
                         <td width="77">
-                    	    <a href="#" title="Sort tasks" class="order-task"><i class="icon-sort"></i></a> |
+                    	    <a href="#" title="Sort tasks" class="order-tasks"><i class="icon-sort"></i></a> |
                     	    <a href="#" title="Edit task" class="edit-task"><i class="icon-pencil"></i></a> |
                             <a href="#" title="Delete task" class="delete-task"><i class="icon-trash"></i></a>
                             <input type="text" name="task_text" value="">
